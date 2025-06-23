@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  dockerbuild:
+  dockerbuild: #Runs in paralell to build-and-test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -36,8 +36,8 @@ jobs:
       run: |
         pytest
 
-  build-and-publish: #Publish to dockerhub
-    needs: build-and-test
+  build-and-publish: #Publish to dockerhub.
+    needs: build-and-test #Runs after build-and-test (sequential)
     runs-on: ubuntu-latest
 
     steps:
